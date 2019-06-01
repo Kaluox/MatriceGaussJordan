@@ -3,6 +3,7 @@
 
 #include "CMatrice.h"
 #include "CException.h"
+#include "CMatriceGaussJordan.h"
 
 template<class T>
 CMatrice<T>::CMatrice():CMatriceCore() {
@@ -15,9 +16,9 @@ CMatrice<T>::CMatrice(const CMatrice &matrice):CMatriceCore(matrice) {
 }
 
 template<class T>
-CMatrice<T>::CMatrice(int iNbLigne, int iNbColonne):CMatriceCore() {
+CMatrice<T>::CMatrice(unsigned int iNbLigne, unsigned int iNbColonne):CMatriceCore() {
     T **pptNewValeurs = (T **) malloc(iNbLigne * sizeof(T *));
-    int iLigne, iColonne;
+    unsigned int iLigne, iColonne;
     for (iLigne = 0; iLigne < iNbLigne; iLigne++) {
         pptNewValeurs[iLigne] = (T *) malloc(iNbColonne * sizeof(T));
         for (iColonne = 0; iColonne < iNbColonne; iColonne++) {
@@ -49,8 +50,8 @@ CMatrice<T>::setValeurs(const char *pcMatriceString, const char *pcDefaultDelimV
         std::string::size_type stPosDelimValue = 0;//for getting position of first occurence of pcDefaultDelimValues
         std::string::size_type stPosDelimLine = 0;//for getting position of first occurence of pcDefaultDelimLines
 
-        int iLineNumber = -1;//current line number in loop
-        int iColonneNumber = -1;//current column number in loop
+        unsigned int iLineNumber = -1;//current line number in loop
+        unsigned int iColonneNumber = -1;//current column number in loop
 
         do {
             iLineNumber += 1;
@@ -109,7 +110,7 @@ CMatrice<T>::CMatrice(const char *pcFileName) {
         std::string part1, part2;
         std::string sMatriceType = "void";
         std::string sMatriceString;
-        int iNbLignes = 0, iNbColonnes = 0;
+        unsigned int iNbLignes = 0, iNbColonnes = 0;
         std::string::size_type stPosEqualSign;
         bool bMatriceStringOpened = false;
         for (std::string line; getline(ifstream, line);) {//for each line
@@ -208,7 +209,7 @@ bool CMatrice<T>::operator==(CMatrice &matrice) {
     if ((matrice.getNbLignes() != getNbLignes()) || (matrice.getNbColonnes() != getNbColonnes())) {
         return false;
     }
-    int iColonne, iLigne;
+    unsigned int iColonne, iLigne;
     for (iLigne = 0; iLigne < getNbLignes(); iLigne++) {
         for (iColonne = 0; iColonne < getNbColonnes(); iColonne++) {
             if (getValeur(iLigne, iColonne) != matrice.getValeur(iLigne, iColonne)) {
@@ -220,52 +221,51 @@ bool CMatrice<T>::operator==(CMatrice &matrice) {
 }
 
 template<class T>
-CMatrice<T> CMatrice<T>::operator+(T tVal) {
+CMatrice<T> &CMatrice<T>::operator+(T tVal) {
     //std::cout << "[+] " << tVal << "<" << typeid(T).name() << ">" << std::endl;
-    CMatrice<T> tmp(*this);
-    int iColonne, iLigne;
+    CMatrice<T> *tmp = new CMatrice<T>(*this);
+    unsigned int iColonne, iLigne;
     for (iLigne = 0; iLigne < getNbLignes(); iLigne++) {
         for (iColonne = 0; iColonne < getNbColonnes(); iColonne++) {
-            tmp.setValeur(getValeur(iLigne, iColonne) + tVal, iLigne, iColonne);
+            tmp->setValeur(getValeur(iLigne, iColonne) + tVal, iLigne, iColonne);
         }
     }
     //std::cout << "returning:" << std::endl << *tmp << std::endl;
-    return tmp;
+    return *tmp;
 }
 
 template<class T>
-CMatrice<T> CMatrice<T>::operator-(T tVal) {
+CMatrice<T> &CMatrice<T>::operator-(T tVal) {
     //std::cout << "[-] " << tVal << "<" << typeid(T).name() << ">" << std::endl;
     //std::cout << "returning:" << std::endl << (*this + (tVal * (-1))) << std::endl;
     return (*this + (tVal * (-1)));
 }
 
 template<class T>
-CMatrice<T> CMatrice<T>::operator*(T tVal) {
+CMatrice<T> &CMatrice<T>::operator*(T tVal) {
     //std::cout << "[*] " << tVal << "<" << typeid(T).name() << ">" << std::endl;
-    CMatrice<T> tmp(*this);
-    int iColonne, iLigne;
+    CMatrice<T> *tmp = new CMatrice<T>(*this);
+    unsigned int iColonne, iLigne;
     for (iLigne = 0; iLigne < getNbLignes(); iLigne++) {
         for (iColonne = 0; iColonne < getNbColonnes(); iColonne++) {
-            tmp.setValeur(getValeur(iLigne, iColonne) * tVal, iLigne, iColonne);
+            tmp->setValeur(getValeur(iLigne, iColonne) * tVal, iLigne, iColonne);
         }
     }
     //std::cout << "returning:" << std::endl << *tmp << std::endl;
-    return tmp;
+    return *tmp;
 }
 
 template<class T>
-CMatrice<T> CMatrice<T>::operator/(T tVal) {
+CMatrice<T> &CMatrice<T>::operator/(T tVal) {
     //std::cout << "[/] " << tVal << "<" << typeid(T).name() << ">" << std::endl;
-    CMatrice<T> tmp(*this);
-    int iColonne, iLigne;
+    CMatrice<T> *tmp = new CMatrice<T>(*this);
+    unsigned int iColonne, iLigne;
     for (iLigne = 0; iLigne < getNbLignes(); iLigne++) {
         for (iColonne = 0; iColonne < getNbColonnes(); iColonne++) {
-            tmp.setValeur(getValeur(iLigne, iColonne) / tVal, iLigne, iColonne);
+            tmp->setValeur(getValeur(iLigne, iColonne) / tVal, iLigne, iColonne);
         }
     }
-    //std::cout << "returning:" << std::endl << *tmp << std::endl;
-    return tmp;
+    return *tmp;
 }
 
 template<class T>
@@ -297,20 +297,20 @@ CMatrice<T> &CMatrice<T>::operator/=(T tVal) {
 }
 
 template<class T>
-CMatrice<T> CMatrice<T>::operator+(CMatrice &matrice) {
+CMatrice<T> &CMatrice<T>::operator+(CMatrice &matrice) {
     //std::cout << "[+]" << std::endl  << matrice << std::endl;
-    CMatrice<T> tmp(*this);
+    CMatrice<T> *tmp = new CMatrice<T>(*this);
     if ((matrice.getNbLignes() != getNbLignes()) || (matrice.getNbColonnes() != getNbColonnes())) {
         //throw new CException();
     }
-    int iColonne, iLigne;
+    unsigned int iColonne, iLigne;
     for (iLigne = 0; iLigne < getNbLignes(); iLigne++) {
         for (iColonne = 0; iColonne < getNbColonnes(); iColonne++) {
-            tmp.setValeur(getValeur(iLigne, iColonne) + matrice.getValeur(iLigne, iColonne), iLigne, iColonne);
+            tmp->setValeur(getValeur(iLigne, iColonne) + matrice.getValeur(iLigne, iColonne), iLigne, iColonne);
         }
     }
     //std::cout << "returning:" << std::endl << *tmp << std::endl;
-    return tmp;
+    return *tmp;
 }
 
 template<class T>
@@ -321,7 +321,7 @@ CMatrice<T> &CMatrice<T>::operator+=(CMatrice &matrice) {
 }
 
 template<class T>
-CMatrice<T> CMatrice<T>::operator-(CMatrice &matrice) {
+CMatrice<T> &CMatrice<T>::operator-(CMatrice &matrice) {
     //std::cout << "[-]" << std::endl << matrice << std::endl;
     //std::cout << "returning:" << std::endl << ((*this)+matrice*(-1)) << std::endl;
     return ((*this) + matrice * (-1));
@@ -335,7 +335,7 @@ CMatrice<T> &CMatrice<T>::operator-=(CMatrice &matrice) {
 }
 
 template<class T>
-CMatrice<T> CMatrice<T>::operator*(CMatrice &matrice) {
+CMatrice<T> &CMatrice<T>::operator*(CMatrice &matrice) {
     //std::cout << "[*]" << std::endl << matrice << std::endl;
     //CMatrice<T>* tmp = new CMatrice<T>(*this);
     if (getNbColonnes() != matrice.getNbLignes()) {
@@ -344,7 +344,7 @@ CMatrice<T> CMatrice<T>::operator*(CMatrice &matrice) {
     }
     CMatrice<T> *tmp = new CMatrice<T>(getNbLignes(), matrice.getNbColonnes());
     T tValue;
-    int iLigne, iColonne, iIterator;
+    unsigned int iLigne, iColonne, iIterator;
     for (iLigne = 0; iLigne < getNbLignes(); iLigne++) {
         for (iColonne = 0; iColonne < matrice.getNbColonnes(); iColonne++) {
             tValue = 0;
@@ -366,24 +366,33 @@ CMatrice<T> &CMatrice<T>::operator*=(CMatrice &matrice) {
 }
 
 template<class T>
-CMatrice<T> CMatrice<T>::oTranspose() {
+CMatrice<T> &CMatrice<T>::oTranspose() {
     //std::cout << "[oTranspose]" << std::endl << *this << std::endl;
-    CMatrice<T> tmp(*this);
+    CMatrice<T> *tmp = new CMatrice<T>(*this);
     T** newVal = (T**)malloc(getNbColonnes()*sizeof(T*));
-    for(int iLigne=0; iLigne<getNbColonnes(); iLigne++){
+    for (unsigned int iLigne = 0; iLigne < getNbColonnes(); iLigne++) {
         newVal[iLigne] = (T*)malloc(getNbLignes()*sizeof(T));
-        for(int iColonne=0; iColonne<getNbLignes(); iColonne++){
+        for (unsigned int iColonne = 0; iColonne < getNbLignes(); iColonne++) {
             newVal[iLigne][iColonne] = getValeur(iColonne, iLigne);
         }
     }
-    tmp.setValeurs_(newVal, getNbColonnes(), getNbLignes());
+    tmp->setValeurs_(newVal, getNbColonnes(), getNbLignes());
     //std::cout << *tmp << std::endl;
-    return tmp;
+    return *tmp;
 }
 
 template<class T>
 bool CMatrice<T>::operator!=(CMatrice &matrice) {
     return (!(*this == matrice));
+}
+
+template<class T>
+CMatrice<T> &CMatrice<T>::MATInverse() {
+    CMatriceGaussJordan<T> *MGJMatrice = new CMatriceGaussJordan<T>(*this);
+    printf("bbite\n");
+    CMatrice<T> MATMatriceRes = MGJMatrice->MGJget();
+    MATMatriceRes.MACAfficher();
+    return MATMatriceRes;
 }
 
 

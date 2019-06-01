@@ -8,7 +8,7 @@ class CMatriceExtractor {
 private:
     CMatrice<T> *pMAEMatrice;
 public:
-    CMatriceExtractor(CMatrice<T> &MATParam);
+    CMatriceExtractor(CMatrice<T> *MATParam);
 
     ~CMatriceExtractor();
 

@@ -41,7 +41,7 @@ public:
      * @param {int} iNbLigne
      * @param {int} iNbColonne
      */
-    CMatrice(int iNbLigne, int iNbColonne);
+    CMatrice(unsigned int iNbLigne, unsigned int iNbColonne);
 
 
     /**
@@ -101,7 +101,7 @@ public:
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice operator+(T tVal);
+    CMatrice &operator+(T tVal);
 
     /**
      * \overload operator += (T tVal)
@@ -115,7 +115,7 @@ public:
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice operator-(T tVal);
+    CMatrice &operator-(T tVal);
 
     /**
      * \overload operator -= (T tVal)
@@ -129,7 +129,7 @@ public:
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice operator*(T tVal);
+    CMatrice &operator*(T tVal);
 
     /**
      * \overload operator *= (T tVal)
@@ -143,7 +143,7 @@ public:
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice operator/(T tVal);
+    CMatrice &operator/(T tVal);
 
     /**
      * \overload operator /= (T tVal)
@@ -159,7 +159,7 @@ public:
      * @param {CMatrice<T> &}
      * @return {CMatrice<T> &}
      */
-    CMatrice operator+(CMatrice &matrice);
+    CMatrice &operator+(CMatrice &matrice);
 
     /**
      * \overload operator += (Cmatrice<T> & matrice)
@@ -173,7 +173,7 @@ public:
      * @param {CMatrice<T> &}
      * @return {CMatrice<T> &}
      */
-    CMatrice operator-(CMatrice &matrice);
+    CMatrice &operator-(CMatrice &matrice);
 
     /**
      * \overload operator -= (Cmatrice<T> & matrice)
@@ -187,7 +187,7 @@ public:
      * @param {CMatrice<T> &}
      * @return {CMatrice<T> &}
      */
-    CMatrice operator*(CMatrice &matrice);
+    CMatrice &operator*(CMatrice &matrice);
 
     /**
      * \overload operator *= (Cmatrice<T> & matrice)
@@ -201,7 +201,9 @@ public:
      * \fn CMatrice<T> & oTranspose()
      * @return {CMatrice<T> &}
      */
-    CMatrice oTranspose();
+    CMatrice &oTranspose();
+
+    CMatrice &MATInverse();
 
 };
 

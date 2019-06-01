@@ -1,5 +1,7 @@
 //#include "CMatriceCore.h"
 #include "CException.h"
+#include "CMatriceCore.h"
+
 
 template<class T>
 CMatriceCore<T>::CMatriceCore() {
@@ -24,7 +26,7 @@ CMatriceCore<T>::CMatriceCore(const CMatriceCore<T> &matriceCore) {
 
 template<class T>
 CMatriceCore<T>::~CMatriceCore() {
-    for (int iLigne = getNbLignes() - 1; iLigne >= 0; iLigne--) {
+    for (unsigned int iLigne = getNbLignes() - 1; iLigne >= 0; iLigne--) {
         delete (ppMACValeurs[iLigne]);
         ppMACValeurs[iLigne] = nullptr;
     }
@@ -36,12 +38,12 @@ CMatriceCore<T>::~CMatriceCore() {
 }
 
 template<class T>
-int CMatriceCore<T>::getNbLignes() const{
+unsigned int CMatriceCore<T>::getNbLignes() const {
     return iMACNbLignes;
 }
 
 template<class T>
-int CMatriceCore<T>::getNbColonnes() const{
+unsigned int CMatriceCore<T>::getNbColonnes() const {
     return iMACNbColonnes;
 }
 
@@ -51,7 +53,7 @@ T **CMatriceCore<T>::getValeurs() const{
 }
 
 template<class T>
-T CMatriceCore<T>::getValeur(int iPositionLigne, int iPositionColonne) const {
+T CMatriceCore<T>::getValeur(unsigned int iPositionLigne, unsigned int iPositionColonne) const {
     if(iPositionColonne<0 || iPositionColonne>getNbColonnes()){
         throw new CException();
     }
@@ -62,14 +64,14 @@ T CMatriceCore<T>::getValeur(int iPositionLigne, int iPositionColonne) const {
 }
 
 template<class T>
-void CMatriceCore<T>::setValeurs_(T ** ppValeurs, int iNbLignes, int iNbColonnes) {
+void CMatriceCore<T>::setValeurs_(T **ppValeurs, unsigned int iNbLignes, unsigned int iNbColonnes) {
     iMACNbLignes = iNbLignes;
     iMACNbColonnes = iNbColonnes;
     try {
         ppMACValeurs = (T **) realloc(ppMACValeurs, iNbLignes * sizeof(T *));
-        for (int iLigne = 0; iLigne < (iNbLignes); iLigne++) {
+        for (unsigned int iLigne = 0; iLigne < (iNbLignes); iLigne++) {
             ppMACValeurs[iLigne] = (T *) malloc(iNbColonnes * sizeof(T));
-            for (int iColonne = 0; iColonne < (iNbColonnes); iColonne++) {
+            for (unsigned int iColonne = 0; iColonne < (iNbColonnes); iColonne++) {
                 setValeur(ppValeurs[iLigne][iColonne], iLigne, iColonne);
             }
         }
@@ -79,7 +81,7 @@ void CMatriceCore<T>::setValeurs_(T ** ppValeurs, int iNbLignes, int iNbColonnes
 }
 
 template<class T>
-void CMatriceCore<T>::setValeur(T valeur, int iPositionLigne, int iPositionColonne) {
+void CMatriceCore<T>::setValeur(T valeur, unsigned int iPositionLigne, unsigned int iPositionColonne) {
     if(iPositionColonne<0 || iPositionColonne>getNbColonnes()){
         throw new CException("position column.");
     }
@@ -91,15 +93,13 @@ void CMatriceCore<T>::setValeur(T valeur, int iPositionLigne, int iPositionColon
 }
 
 template<class T>
-std::ostream& operator<<(std::ostream &strm, const CMatriceCore<T> &matriceCore) {
-    for (int i = 0; i < matriceCore.getNbLignes(); i++) {
-        for (int j = 0; j < matriceCore.getNbColonnes(); j++) {
-            strm << std::to_string((int)matriceCore.getValeur(i, j));
-            strm << " ";
+void CMatriceCore<T>::MACAfficher() {
+    for (unsigned int i = 0; i < getNbLignes(); i++) {
+        for (unsigned int j = 0; j < getNbColonnes(); j++) {
+            printf("%f ", getValeur(i, j));
         }
-        strm << "\n";
+        printf("\n");
     }
-    return strm;
 }
 
 

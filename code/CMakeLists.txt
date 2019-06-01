@@ -6,7 +6,8 @@ set(SOURCE_FILES
         CMatriceCore.h
         CMatrice.h
         CMatriceGaussJordan.h
+        CMatriceExtractor.h
         emptyFile.cpp
-        CMatriceExtractor.h)
+        )
 
 add_library(matricesCode ${SOURCE_FILES})

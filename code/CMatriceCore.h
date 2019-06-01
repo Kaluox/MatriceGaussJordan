@@ -10,14 +10,14 @@ template<class T> class CMatriceCore {
     //attributs
 private:
     /**
-     * \brief {int} iMACNbLignes
+     * \brief {unsigned int} iMACNbLignes
      */
-    int iMACNbLignes;
+    unsigned int iMACNbLignes;
 
     /**
-     * \brief {int} iMACNbColonnes
+     * \brief {unsigned int} iMACNbColonnes
      */
-    int iMACNbColonnes;
+    unsigned int iMACNbColonnes;
 
     /**
      * \brief {T**} ppMACValeurs
@@ -46,34 +46,28 @@ protected:
      * \fn void setValeurs(T ** ppValeurs)
      * \param {T **} ppValeurs
      */
-    virtual void setValeurs_(T ** ppValeurs, int iNbLignes, int iNbColonnes);
+    virtual void setValeurs_(T **ppValeurs, unsigned int iNbLignes, unsigned int iNbColonnes);
 
 public:
     /**
-     * \overload operator << (std::ostream & strm) const
-     * \return {std::ostream&}
-     */
-    std::ostream& operator<<(std::ostream &strm) const;
-
-    /**
-     * \fn void setValeur(T valeur, int iPositionLigne, int iPositionColonne)
+     * \fn void setValeur(T valeur, unsigned int iPositionLigne, unsigned int iPositionColonne)
      * \param {T} valeur
-     * \param {int} iPositionLigne
-     * \param {int} iPositionColonne
+     * \param {unsigned int} iPositionLigne
+     * \param {unsigned int} iPositionColonne
      */
-    virtual void setValeur(T valeur, int iPositionLigne, int iPositionColonne);
+    virtual void setValeur(T valeur, unsigned int iPositionLigne, unsigned int iPositionColonne);
 
     /**
-     * \fn int getNbLignes()
-     * \return {int}
+     * \fn unsigned int getNbLignes()
+     * \return {unsigned int}
      */
-    virtual int getNbLignes() const;
+    virtual unsigned int getNbLignes() const;
 
     /**
-     * \fn int getNbColonnes()
-     * \return {int}
+     * \fn unsigned int getNbColonnes()
+     * \return {unsigned int}
      */
-    virtual int getNbColonnes() const;
+    virtual unsigned int getNbColonnes() const;
 
     /**
      * \fn T** getValeurs()
@@ -83,13 +77,15 @@ public:
     virtual T ** getValeurs() const;
 
     /**
-     * \fn T getValeur(int iPositionLigne, int iPositionColonne)
-     * \param {int} iPositionLigne
-     * \param {int} iPositionColonne
+     * \fn T getValeur(unsigned int iPositionLigne, unsigned int iPositionColonne)
+     * \param {unsigned int} iPositionLigne
+     * \param {unsigned int} iPositionColonne
      * \brief Returns the value at the position defined in parameters
      * \return {T}
      */
-    virtual T getValeur(int iPositionLigne, int iPositionColonne) const;
+    virtual T getValeur(unsigned int iPositionLigne, unsigned int iPositionColonne) const;
+
+    void MACAfficher();
 };
 
 #include "CMatriceCore.cpp"

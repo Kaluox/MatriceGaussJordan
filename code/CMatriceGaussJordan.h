@@ -2,8 +2,10 @@
 #define MATRICES_CMATRICEGAUSSJORDAN_H
 
 #include "CMatrice.h"
+#include "CMatriceExtractor.h"
 
-template<class T> class CMatriceGaussJordan: public CMatrice<T>{
+template<class T>
+class CMatriceGaussJordan {
 private :
     CMatrice<T> *pMGJMATMatrice;
 
@@ -11,11 +13,11 @@ private :
 
     void MGJEchangeLignes(unsigned int uiIndexOne, unsigned int uiIndexTwo);
 
+    void MGJSetLigne(CMatrice<T> &MATLigne, unsigned int uiLigneNb);
+
 public :
-    explicit CMatriceGaussJordan(CMatrice<T> &oMATParam);
-
+    CMatriceGaussJordan(CMatrice<T> &oMATParam);
     ~CMatriceGaussJordan();
-
     CMatrice<T> &MGJget();
 };
 
