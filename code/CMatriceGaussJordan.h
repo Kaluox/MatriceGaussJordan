@@ -1,29 +1,25 @@
-//
-// Created by alexi on 24/05/2019.
-//
-
 #ifndef MATRICES_CMATRICEGAUSSJORDAN_H
 #define MATRICES_CMATRICEGAUSSJORDAN_H
 
 #include "CMatrice.h"
 
 template<class T> class CMatriceGaussJordan: public CMatrice<T>{
-
 private :
+    CMatrice<T> *pMGJMATMatrice;
+
+    CMatrice<T> &MGJGenerateId(unsigned int uiNbLignes, unsigned int uiNbColonnes);
+
+    void MGJEchangeLignes(unsigned int uiIndexOne, unsigned int uiIndexTwo);
+
 public :
-    CMatriceGaussJordan(unsigned int uiTaille);
+    explicit CMatriceGaussJordan(CMatrice<T> &oMATParam);
 
-    CMatriceGaussJordan CMCIdentite(unsigned int uiTaille);
+    ~CMatriceGaussJordan();
 
-    CMatriceGaussJordan(const char* pcMatriceString, const char* pcDefaultDelimValues, const char* pcDefaultDelimLines);
-
-    CMatriceGaussJordan CMCInverseGJ(CMatriceGaussJordan CMCParam);
-
-    CMatrice<T> getLigne(unsigned int uiNumLigne);
-
-    void CMCEchangeLignes(unsigned int uiIndexOne, unsigned int uiIndexTwo);
-
+    CMatrice<T> &MGJget();
 };
 
+
+#include "CMatriceGaussJordan.cpp"
 
 #endif //MATRICES_CMATRICEGAUSSJORDAN_H

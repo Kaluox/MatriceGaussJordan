@@ -8,6 +8,7 @@
 int main(int argc, const char* argv[]) {
     std::cout<<"BLOP"<<std::endl;
     CMatriceGaussJordan<int> *tmp2 = new CMatriceGaussJordan<int>(2);
+    std::cout << *tmp2 << std::endl;
     std::cout<<"BLIP"<<std::endl;
     /*try {
         std::cout << "Main [matrices]" << std::endl;

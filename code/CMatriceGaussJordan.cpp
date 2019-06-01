@@ -1,8 +1,6 @@
-//
-// Created by alexi on 24/05/2019.
-//
 
 #include "CMatriceGaussJordan.h"
+#include "CMatriceExtractor.h"
 
 template<class T>
 CMatriceGaussJordan<T> CMatriceGaussJordan<T>::CMCInverseGJ(CMatriceGaussJordan CMCParam) {
@@ -46,49 +44,58 @@ CMatriceGaussJordan<T> CMatriceGaussJordan<T>::CMCInverseGJ(CMatriceGaussJordan 
     return tmpIdentite;
 }
 
-template<class T>
-CMatriceGaussJordan<T> CMatriceGaussJordan<T>::CMCIdentite(unsigned int uiTaille) {
-    CMatriceGaussJordan CMCIdentite = new CMatriceGaussJordan(uiTaille);
-    for(int index = 0; index < uiTaille ; index++){
-        CMCIdentite.setValeur(1,index,index);
-    }
-    return CMCIdentite;
-}
 
 template<class T>
-CMatriceGaussJordan<T>::CMatriceGaussJordan(unsigned int uiTaille) {
-    CMatrice(uiTaille, uiTaille);
-}
-
-template<class T>
-CMatrice<T> CMatriceGaussJordan<T>::getLigne(unsigned int uiNumLigne) {
-    CMatrice tmpLigne = CMatrice(1,getNbColonnes());
-    for(int iIndex = 0 ; iIndex < getNbColonnes() ; iIndex++){
-        tmpLigne.setValeur(this->getValeur(uiNumLigne,iIndex),1,iIndex);
-    }
-    return tmpLigne;
-}
-
-template<class T>
-void CMatriceGaussJordan<T>::CMCEchangeLignes(unsigned int uiIndexOne, unsigned int uiIndexTwo) {
-    CMatrice tmpLigne1 = this->getLigne(uiIndexOne);
-    CMatrice tmpLigne2 = this->getLigne(uiIndexTwo);
-    for(int index = 0 ; index < getNbColonnes() ; index++){
-        this->setValeur(tmpLigne2.getValeur(1,index),uiIndexOne,index);
-        this->setValeur(tmpLigne1.getValeur(1,index),uiIndexTwo,index);
+void CMatriceGaussJordan<T>::MGJEchangeLignes(unsigned int uiIndexOne, unsigned int uiIndexTwo) {
+    CMatriceExtractor<T> MAEMatriceExtractor(*pMGJMATMatrice);
+    CMatrice<T> tmpLigne1 = MAEMatriceExtractor.MAEgetLigne(uiIndexOne);
+    CMatrice<T> tmpLigne2 = MAEMatriceExtractor.MAEgetLigne(uiIndexTwo);
+    for (int index = 0; index < getNbColonnes(); index++) {
+        this->setValeur(tmpLigne2.getValeur(1, index), uiIndexOne, index);
+        this->setValeur(tmpLigne1.getValeur(1, index), uiIndexTwo, index);
     }
 }
 
 template<class T>
-CMatriceGaussJordan<T>::CMatriceGaussJordan(const char *pcMatriceString, const char *pcDefaultDelimValues,
-                                  const char *pcDefaultDelimLines){
-    new CMatrice(*pcMatriceString, *pcDefaultDelimValues, *pcDefaultDelimLines);
-    if(this->getNbLigne() != this->getNbColonnes()){
-        std::cout<<"Bof bof"<<std::endl;
+CMatriceGaussJordan<T>::CMatriceGaussJordan(CMatrice<T> &MATParam) {
+    unsigned int uiNbLignes = MATParam.getNbLignes();
+    unsigned int uiNbColonnes = MATParam.getNbColonnes();
+    pMGJMATMatrice = new CMatrice<T>(uiNbLignes, uiNbColonnes * 2);
+
+    CMatrice<T> MATId = MGJGenerateId(uiNbLignes, uiNbColonnes);
+    unsigned int uiLigneIterator, uiColonneIterator;
+    for (uiLigneIterator = 0; uiLigneIterator < uiNbLignes; uiLigneIterator++) {
+        for (uiColonneIterator = 0; uiColonneIterator < uiNbColonnes; uiColonneIterator++) {
+            pMGJMATMatrice->setValeur(MATParam.getValeur(uiLigneIterator, uiColonneIterator), uiLigneIterator,
+                                      uiColonneIterator);
+        }
+        for (uiColonneIterator = uiNbColonnes; uiColonneIterator < uiNbColonnes * 2; uiColonneIterator++) {
+            pMGJMATMatrice->setValeur(MATId.getValeur(uiLigneIterator, uiColonneIterator), uiLigneIterator,
+                                      uiColonneIterator);
+        }
     }
+    //pMGJMATMatrice = [MATParam|MATId]
+
 
 }
 
+template<class T>
+CMatrice<T> &CMatriceGaussJordan<T>::MGJGenerateId(unsigned int uiNbLignes, unsigned int uiNbColonnes) {
+    CMatrice<T> *pMATMatriceIdentite = new CMatrice<T>(uiNbLignes, uiNbColonnes);
+    unsigned int uiDiagIterator;
+    for (uiDiagIterator = 0; uiDiagIterator < uiNbLignes; uiDiagIterator++) {
+        pMATMatriceIdentite->setValeur((T) 1, uiDiagIterator, uiDiagIterator);
+    }
+    return *pMATMatriceIdentite;
 
+}
 
+template<class T>
+CMatriceGaussJordan<T>::~CMatriceGaussJordan() {
+    delete (pMGJMATMatrice);
+}
 
+template<class T>
+CMatrice<T> &CMatriceGaussJordan<T>::MGJget() {
+    return *pMGJMATMatrice;
+}
