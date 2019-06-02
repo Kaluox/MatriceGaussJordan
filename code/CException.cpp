@@ -1,3 +1,5 @@
+#include "CException.h"
+
 CException::CException() throw() {
     pcEXCMsg = "ERROR\n";
 }

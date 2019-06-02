@@ -1,6 +1,8 @@
+//#include "CMatriceExtractor.h"
+
 template<class T>
 CMatriceExtractor<T>::CMatriceExtractor(CMatrice<T> *MATParam) {
-    pMAEMatrice = (CMatrice<T> *) malloc(sizeof(CMatrice<T>));
+    pMAEMatrice = (CMatrice<T> *) malloc(sizeof(CMatrice < T >));
     pMAEMatrice = MATParam;
 }
 

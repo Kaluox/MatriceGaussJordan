@@ -2,9 +2,6 @@
 #define MATRICES_CMATRICE_H
 
 #include "CMatriceCore.h"
-#include "CException.h"
-#include "CMatriceGaussJordan.h"
-#include "CParserMatrice.h"
 
 #include <fstream>
 
@@ -217,6 +214,9 @@ public:
 
 };
 
+#include "CParserMatrice.h"
+#include "CMatriceGaussJordan.h"
+#include "CException.h"
 #include "CMatrice.cpp"
 
 #endif //MATRICES_CMATRICE_H

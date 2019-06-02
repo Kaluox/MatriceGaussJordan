@@ -2,6 +2,7 @@
 
 #include "CParser.h"
 
+
 CParser::CParser(const char *pcFilePath) {
     uiPARNbFields = 0;
     uiPARNbValues = 0;

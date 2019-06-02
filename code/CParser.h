@@ -70,7 +70,7 @@ protected:
      * @param {const char*} pcFilePath
      * @desc Calls {@link CParser#extractValues}.
      */
-    CParser(const char *pcFilePath);
+    explicit CParser(const char *pcFilePath);
 
     /**
      * @desctructor

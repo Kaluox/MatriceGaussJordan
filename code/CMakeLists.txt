@@ -2,13 +2,13 @@ cmake_minimum_required(VERSION 3.10)
 project(matricesCode CXX)
 
 set(SOURCE_FILES
-        CException.h
+        CException.cpp CException.h
+        CMatriceCore.h
+        CMatrice.h
         CParser.cpp CParser.h
         CParserMatrice.cpp CParserMatrice.h
         CMatriceExtractor.h
         CMatriceGaussJordan.h
-        CMatriceCore.h
-        CMatrice.h
         emptyFile.cpp
         )
 

@@ -16,6 +16,4 @@ public:
     virtual const char *what() const throw();
 };
 
-#include "CException.cpp"
-
 #endif //MATRICES_CEXCEPTION_H

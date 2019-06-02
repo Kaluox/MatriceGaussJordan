@@ -1,11 +1,12 @@
 #ifndef MATRICEGAUSSJORDAN_CPARSERMATRICE_H
 #define MATRICEGAUSSJORDAN_CPARSERMATRICE_H
 
-#include "CMatrice.h"
 
 #include <cstring>
 #include <iostream>
 #include <string>
+#include "CParser.h"
+#include "CMatrice.h"
 
 /**
  * @class CParserMatrice

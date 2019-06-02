@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 #include "code/CMatrice.h"
-#include "code/CMatriceGaussJordan.h"
 
 int main(int argc, const char *argv[]) {
     try {
