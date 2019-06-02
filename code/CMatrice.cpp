@@ -388,6 +388,9 @@ bool CMatrice<T>::operator!=(CMatrice &matrice) {
 
 template<class T>
 CMatrice<T> &CMatrice<T>::MATInverse() {
+    if ((getNbLignes() != getNbColonnes()) || (getNbLignes() == 0) || (getNbColonnes() == 0)) {
+        throw new CException("ERROR: MATInverse dimensions not allowed.");
+    }
     CMatriceGaussJordan<T> *MGJMatrice = new CMatriceGaussJordan<T>(*this);
     return MGJMatrice->MGJget();
 }
