@@ -212,7 +212,7 @@ bool CMatrice<T>::operator==(CMatrice &matrice) {
     unsigned int iColonne, iLigne;
     for (iLigne = 0; iLigne < getNbLignes(); iLigne++) {
         for (iColonne = 0; iColonne < getNbColonnes(); iColonne++) {
-            if (getValeur(iLigne, iColonne) != matrice.getValeur(iLigne, iColonne)) {
+            if ((getValeur(iLigne, iColonne) - matrice.getValeur(iLigne, iColonne)) != 0) {
                 return false;
             }
         }

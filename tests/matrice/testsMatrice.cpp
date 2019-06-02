@@ -496,6 +496,6 @@ int main(int argc, const char* argv[]) {
 /*#if TEST_CHAR == 1
     testThemAll<char>();
 #endif*/
-    system("pause");
+    //system("pause");
     return 0;
 }

@@ -5,7 +5,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(lib)
 add_subdirectory(code)
-add_subdirectory(tests)
+add_subdirectory(tests/matrice)
+add_subdirectory(tests/matriceGJ)
 
 find_library(matricesCode COMPONENTS REQUIRED)
 
