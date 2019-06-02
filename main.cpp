@@ -1,7 +1,6 @@
 //#include "pch.h"
 #include <iostream>
 #include <string>
-#include "code/CMatriceCore.h"
 #include "code/CMatrice.h"
 #include "code/CMatriceGaussJordan.h"
 

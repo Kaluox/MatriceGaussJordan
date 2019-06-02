@@ -3,12 +3,12 @@ project(matricesCode CXX)
 
 set(SOURCE_FILES
         CException.h
+        CParser.cpp CParser.h
+        CParserMatrice.cpp CParserMatrice.h
+        CMatriceExtractor.h
+        CMatriceGaussJordan.h
         CMatriceCore.h
         CMatrice.h
-        CMatriceGaussJordan.h
-        CMatriceExtractor.h
-        CParser.h
-        CParserMatrice.h
         emptyFile.cpp
         )
 

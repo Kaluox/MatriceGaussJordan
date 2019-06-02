@@ -1,6 +1,7 @@
 #ifndef MATRICES_CEXCEPTION_H
 #define MATRICES_CEXCEPTION_H
 
+#include <stdio.h>
 
 class CException {
 private:

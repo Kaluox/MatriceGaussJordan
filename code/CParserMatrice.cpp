@@ -1,6 +1,3 @@
-#include <cstring>
-#include <iostream>
-#include <string>
 #include "CParserMatrice.h"
 
 CParserMatrice::CParserMatrice(const char *pcFilePath) : CParser(pcFilePath) {

@@ -1,8 +1,11 @@
 #ifndef MATRICEGAUSSJORDAN_CPARSERMATRICE_H
 #define MATRICEGAUSSJORDAN_CPARSERMATRICE_H
 
-#include "CParser.h"
 #include "CMatrice.h"
+
+#include <cstring>
+#include <iostream>
+#include <string>
 
 /**
  * @class CParserMatrice
@@ -19,9 +22,25 @@ private:
      * @private
      */
     enum Fields {
-        TypeMatrice, NBLignes, NBColonnes, Matrice
+        TypeMatrice, NBLignes, NBColonnes, Matrice, INVALID
     };
 
+    /**
+     * @function CParserMatrice#PMAResolveField
+     * @param {const char*} pcFieldString
+     * @return {CParserMatrice#Fields}
+     * @desc Returns a Field[enum] from a const char* supposedly describing a field.
+     * @private
+     */
+    Fields PMAResolveField(const char *pcFieldString);
+
+    /**
+     * @name CParserGraphe#pGRAPGRGraphe
+     * @type {CGraphe *}
+     * @desc The resulting {@link CGraphe}. Retrive with {@link CParserGraphe#PGRGetGraph}().
+     * @private
+     */
+    CMatrice<double> *pMATPMAMatrice;
 public:
 
     /**

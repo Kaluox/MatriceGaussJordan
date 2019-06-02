@@ -44,8 +44,8 @@ CMatrice<T>::setValeurs(const char *pcMatriceString, const char *pcDefaultDelimV
         std::string::size_type stPosDelimValue = 0;//for getting position of first occurence of pcDefaultDelimValues
         std::string::size_type stPosDelimLine = 0;//for getting position of first occurence of pcDefaultDelimLines
 
-        unsigned int iLineNumber = -1;//current line number in loop
-        unsigned int iColonneNumber = -1;//current column number in loop
+        int iLineNumber = -1;//current line number in loop
+        int iColonneNumber = -1;//current column number in loop
 
         do {
             iLineNumber += 1;

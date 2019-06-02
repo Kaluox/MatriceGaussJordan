@@ -1,14 +1,10 @@
-//#include "CException.h"
-
-//#include "CException.h"
-
 CException::CException() throw() {
     pcEXCMsg = "ERROR\n";
 }
 
 CException::CException(const char *pcMsg) throw() {
     pcEXCMsg = pcMsg;
-    std::cerr << pcEXCMsg << "\n";
+    fprintf(stderr, "%s\n", pcEXCMsg);
 }
 
 CException::~CException() {

@@ -1,13 +1,6 @@
 #define __STDC_WANT_LIB_EXT1__ 1
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fstream>
-#include <string>
-#include <iostream>
 #include "CParser.h"
-#include "CException.h"
 
 CParser::CParser(const char *pcFilePath) {
     uiPARNbFields = 0;

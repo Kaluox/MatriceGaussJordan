@@ -5,6 +5,7 @@
 #include "CException.h"
 #include "CMatriceGaussJordan.h"
 #include "CParserMatrice.h"
+
 #include <fstream>
 
 /**
@@ -65,14 +66,14 @@ public:
      * @param {CMatrice<T> &} matrice
      * @return {CMatrice<T> &}
      */
-    CMatrice& operator = (CMatrice& matrice);
+    CMatrice<T> &operator=(CMatrice &matrice);
 
     /**
      * \overload operator () (CMatrice& matrice)
      * @param {CMatrice<T> &} matrice
      * @return {CMatrice<T> &}
      */
-    CMatrice &operator()(CMatrice &matrice);
+    CMatrice<T> &operator()(CMatrice &matrice);
 
 
     /**
@@ -82,8 +83,8 @@ public:
      * @param {const char*} pcDefaultDelimLines;
      * @return {CMatrice<T> &}
      */
-    CMatrice &operator()(const char *pcMatriceString, const char *pcDefaultDelimValues = " ",
-                         const char *pcDefaultDelimLines = ":");
+    CMatrice<T> &operator()(const char *pcMatriceString, const char *pcDefaultDelimValues = " ",
+                            const char *pcDefaultDelimLines = ":");
 
     /**
      * \overload operator == (CMatrice<T> & matrice)
@@ -104,56 +105,56 @@ public:
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice &operator+(T tVal);
+    CMatrice<T> &operator+(T tVal);
 
     /**
      * \overload operator += (T tVal)
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice& operator += (T tVal);
+    CMatrice<T> &operator+=(T tVal);
 
     /**
      * \overload operator - (T tVal)
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice &operator-(T tVal);
+    CMatrice<T> &operator-(T tVal);
 
     /**
      * \overload operator -= (T tVal)
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice& operator -= (T tVal);
+    CMatrice<T> &operator-=(T tVal);
 
     /**
      * \overload operator * (T tVal)
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice &operator*(T tVal);
+    CMatrice<T> &operator*(T tVal);
 
     /**
      * \overload operator *= (T tVal)
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice& operator *= (T tVal);
+    CMatrice<T> &operator*=(T tVal);
 
     /**
      * \overload operator / (T tVal)
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice &operator/(T tVal);
+    CMatrice<T> &operator/(T tVal);
 
     /**
      * \overload operator /= (T tVal)
      * @param {T} tVal
      * @return {CMatrice<T> &}
      */
-    CMatrice& operator /= (T tVal);
+    CMatrice<T> &operator/=(T tVal);
 
 
 
@@ -162,49 +163,49 @@ public:
      * @param {CMatrice<T> &}
      * @return {CMatrice<T> &}
      */
-    CMatrice &operator+(CMatrice &matrice);
+    CMatrice<T> &operator+(CMatrice &matrice);
 
     /**
      * \overload operator += (Cmatrice<T> & matrice)
      * @param {CMatrice<T> &}
      * @return {CMatrice<T> &}
      */
-    CMatrice& operator += (CMatrice& matrice);
+    CMatrice<T> &operator+=(CMatrice &matrice);
 
     /**
      * \overload operator - (Cmatrice<T> & matrice)
      * @param {CMatrice<T> &}
      * @return {CMatrice<T> &}
      */
-    CMatrice &operator-(CMatrice &matrice);
+    CMatrice<T> &operator-(CMatrice &matrice);
 
     /**
      * \overload operator -= (Cmatrice<T> & matrice)
      * @param {CMatrice<T> &}
      * @return {CMatrice<T> &}
      */
-    CMatrice& operator -= (CMatrice& matrice);
+    CMatrice<T> &operator-=(CMatrice &matrice);
 
     /**
      * \overload operator * (Cmatrice<T> & matrice)
      * @param {CMatrice<T> &}
      * @return {CMatrice<T> &}
      */
-    CMatrice &operator*(CMatrice &matrice);
+    CMatrice<T> &operator*(CMatrice &matrice);
 
     /**
      * \overload operator *= (Cmatrice<T> & matrice)
      * @param {CMatrice<T> &}
      * @return {CMatrice<T> &}
      */
-    CMatrice& operator *= (CMatrice& matrice);
+    CMatrice<T> &operator*=(CMatrice &matrice);
 
 
     /**
      * \fn CMatrice<T> & oTranspose()
      * @return {CMatrice<T> &}
      */
-    CMatrice &oTranspose();
+    CMatrice<T> &oTranspose();
 
     /**
      * @fn CMatrice#MATInverse
@@ -212,7 +213,7 @@ public:
      * @desc Uses {@link CMatriceGaussJordan} to invert a CMatrice.
      * Number of lines must be equals to the number of columns.
      */
-    CMatrice &MATInverse();
+    CMatrice<T> &MATInverse();
 
 };
 
