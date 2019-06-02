@@ -1,8 +1,3 @@
-//#include "CMatriceCore.h"
-#include "CException.h"
-#include "CMatriceCore.h"
-
-
 template<class T>
 CMatriceCore<T>::CMatriceCore() {
     iMACNbLignes = 0;

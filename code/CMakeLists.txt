@@ -7,6 +7,8 @@ set(SOURCE_FILES
         CMatrice.h
         CMatriceGaussJordan.h
         CMatriceExtractor.h
+        CParser.h
+        CParserMatrice.h
         emptyFile.cpp
         )
 

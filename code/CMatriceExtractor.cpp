@@ -33,7 +33,3 @@ CMatrice<T> &CMatriceExtractor<T>::MAEgetLigne(unsigned int uiLigne) {
     return MAEget(uiLigne, 0, uiLigne, pMAEMatrice->getNbColonnes() - 1);
 }
 
-template<class T>
-CMatrice<T> &CMatriceExtractor<T>::MAEgetColonne(unsigned int uiCol) {
-    return MAEget(0, uiCol, pMAEMatrice->getNbLignes() - 1, uiCol);
-}

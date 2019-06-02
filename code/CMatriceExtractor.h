@@ -52,13 +52,6 @@ public:
      */
     CMatrice<T> &MAEgetLigne(unsigned int uiLigne);
 
-    /**
-     * @fn CMatriceExtractor#MAEgetColonne
-     * @param {unsigned int} uiLigne - The wanted column's number
-     * @return {CMatrice<T> &}
-     * @desc Returns the wanted column as a CMatrice<T> with a number of columns equals to 1.
-     */
-    CMatrice<T> &MAEgetColonne(unsigned int uiCol);
 };
 
 #include "CMatriceExtractor.cpp"
