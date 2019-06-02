@@ -52,7 +52,9 @@ public :
     /**
      * @constructor
      * @param {CMatrice<T> &} oMATParam
-     * @desc Creates a new CMatriceGaussJordan. Does all operations. Once called just use the getter to retrieve {@link CMatriceGaussJordan#pMGJMATMatrice}.
+     * @desc Creates a new CMatriceGaussJordan.
+     * Does all operations.
+     * Once called just use the getter to retrieve {@link CMatriceGaussJordan#pMGJMATMatrice}.
      */
     CMatriceGaussJordan(CMatrice<T> &oMATParam);
 

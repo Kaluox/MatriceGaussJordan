@@ -1,9 +1,0 @@
-C:/Users/Matt/CLionProjects/MatriceGaussJordan/cmake-build-release/CMakeFiles/matrices.dir
-C:/Users/Matt/CLionProjects/MatriceGaussJordan/cmake-build-release/CMakeFiles/edit_cache.dir
-C:/Users/Matt/CLionProjects/MatriceGaussJordan/cmake-build-release/CMakeFiles/rebuild_cache.dir
-C:/Users/Matt/CLionProjects/MatriceGaussJordan/cmake-build-release/code/CMakeFiles/edit_cache.dir
-C:/Users/Matt/CLionProjects/MatriceGaussJordan/cmake-build-release/code/CMakeFiles/matricesCode.dir
-C:/Users/Matt/CLionProjects/MatriceGaussJordan/cmake-build-release/code/CMakeFiles/rebuild_cache.dir
-C:/Users/Matt/CLionProjects/MatriceGaussJordan/cmake-build-release/tests/matriceGJ/CMakeFiles/matricesTestsGJ.dir
-C:/Users/Matt/CLionProjects/MatriceGaussJordan/cmake-build-release/tests/matriceGJ/CMakeFiles/edit_cache.dir
-C:/Users/Matt/CLionProjects/MatriceGaussJordan/cmake-build-release/tests/matriceGJ/CMakeFiles/rebuild_cache.dir

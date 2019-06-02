@@ -9,5 +9,5 @@ add_subdirectory(tests/matriceGJ)
 
 find_library(matricesCode COMPONENTS REQUIRED)
 
-add_executable(matrices main.cpp)
-target_link_libraries(matrices matricesCode)
+add_executable(matricesGJ main.cpp)
+target_link_libraries(matricesGJ matricesCode)
