@@ -6,3 +6,4 @@ set(SOURCE_FILES
         )
 
 add_executable(matricesTestsGJ ${SOURCE_FILES})
+target_link_libraries(matricesTestsGJ matricesCode)
