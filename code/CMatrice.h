@@ -203,6 +203,12 @@ public:
      */
     CMatrice &oTranspose();
 
+    /**
+     * @fn CMatrice#MATInverse
+     * @return {CMatrice<T> &} - The resulting inverted CMatrice.
+     * @desc Uses {@link CMatriceGaussJordan} to invert a CMatrice.
+     * Number of lines must be equals to the number of columns.
+     */
     CMatrice &MATInverse();
 
 };
