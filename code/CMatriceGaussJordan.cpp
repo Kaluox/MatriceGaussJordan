@@ -14,7 +14,7 @@ void CMatriceGaussJordan<T>::MGJEchangeLignes(unsigned int uiIndexOne, unsigned 
 
 template<class T>
 CMatriceGaussJordan<T>::CMatriceGaussJordan(CMatrice<T> &MATParam) {
-    //pMGJMATMatrice = (CMatrice<T>*)malloc(sizeof(CMatrice<T>));
+    pMGJMATMatrice = (CMatrice<T> *) malloc(sizeof(CMatrice<T>));
     unsigned int uiNbLignes = MATParam.getNbLignes();
     unsigned int uiNbColonnes = MATParam.getNbColonnes();
     pMGJMATMatrice = new CMatrice<T>(uiNbLignes, uiNbColonnes * 2);
@@ -35,7 +35,8 @@ CMatriceGaussJordan<T>::CMatriceGaussJordan(CMatrice<T> &MATParam) {
     }
     //pMGJMATMatrice = [MATParam|MATId]
 
-    CMatriceExtractor<T> MAEMatriceExtractor(pMGJMATMatrice);
+    CMatriceExtractor<T> *pMAEMatriceExtractor = new CMatriceExtractor<T>(pMGJMATMatrice);
+    CMatriceExtractor<T> MAEMatriceExtractor = *pMAEMatriceExtractor;
     CMatrice<T> MATLigneTmp;
     CMatrice<T> MATLignePivot;
     unsigned int uiLastPivotFound = 0;
@@ -77,8 +78,7 @@ CMatriceGaussJordan<T>::CMatriceGaussJordan(CMatrice<T> &MATParam) {
     }
     CMatrice<T> MATNewMatrice = MAEMatriceExtractor.MAEget(0, uiNbColonnes, uiNbLignes - 1, uiNbColonnes * 2 - 1);
     pMGJMATMatrice = new CMatrice<T>(MATNewMatrice);
-    pMGJMATMatrice->MACAfficher();
-    printf("b\n");
+    //delete(pMAEMatriceExtractor);
 }
 
 template<class T>
@@ -98,9 +98,6 @@ CMatriceGaussJordan<T>::~CMatriceGaussJordan() {
 
 template<class T>
 CMatrice<T> &CMatriceGaussJordan<T>::MGJget() {
-    printf("bite\n");
-    pMGJMATMatrice->MACAfficher();
-    printf("\n");
     return *pMGJMATMatrice;
 }
 

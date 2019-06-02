@@ -26,9 +26,14 @@ CMatriceCore<T>::CMatriceCore(const CMatriceCore<T> &matriceCore) {
 
 template<class T>
 CMatriceCore<T>::~CMatriceCore() {
-    for (unsigned int iLigne = getNbLignes() - 1; iLigne >= 0; iLigne--) {
-        delete (ppMACValeurs[iLigne]);
-        ppMACValeurs[iLigne] = nullptr;
+    if (!((iMACNbLignes == 0) || (iMACNbColonnes == 0))) {
+        //printf("[%d, %d]\n", iMACNbColonnes, iMACNbColonnes);
+        unsigned int uiLigne = 0;
+        for (uiLigne = iMACNbLignes; uiLigne > 0; uiLigne--) {
+            delete (ppMACValeurs[uiLigne - 1]);
+            ppMACValeurs[uiLigne - 1] = nullptr;
+            if (uiLigne == 1) { break; }
+        }
     }
     delete (ppMACValeurs);
     ppMACValeurs = nullptr;

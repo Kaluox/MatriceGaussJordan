@@ -8,13 +8,13 @@
 int main(int argc, const char* argv[]) {
     try {
         std::cout << "Main [matricesGaussJordan]" << std::endl;
-        if (argc == 1) {
+        /*if (argc == 1) {
             throw new CException("No file specified.");
-        }
+        }*/
 
         CMatrice<double> *pMATMatrice;
-        CMatrice<double> MATMatriceInv;
-        for (int iArgNb = 1; iArgNb < argc; iArgNb++) {
+        CMatrice<double> *pMATMatriceInv;
+        //for (int iArgNb = 1; iArgNb < argc; iArgNb++) {
             std::ofstream outputFile("test.txt");
             outputFile << "TypeMatrice=double\n"
                           "NBLignes=3\n"
@@ -26,16 +26,15 @@ int main(int argc, const char* argv[]) {
                           "]";
             outputFile.close();
             pMATMatrice = new CMatrice<double>("test.txt");
-            printf("matrice[%d] created:\n", iArgNb - 1);
+        printf("matrice[%d] created:\n", 0);
             pMATMatrice->MACAfficher();
             printf("\n");
 
-            printf("matrice[%d] inverse:\n", iArgNb - 1);
-            MATMatriceInv = pMATMatrice->MATInverse();
-            MATMatriceInv.MACAfficher();
+        printf("matrice[%d] inverse:\n", 0);
+        pMATMatrice->MATInverse().MACAfficher();
 
             delete (pMATMatrice);
-        }
+        // }
 
     } catch (CException const &exception) {
         fprintf(stderr, "%s\n", exception.what());

@@ -389,10 +389,7 @@ bool CMatrice<T>::operator!=(CMatrice &matrice) {
 template<class T>
 CMatrice<T> &CMatrice<T>::MATInverse() {
     CMatriceGaussJordan<T> *MGJMatrice = new CMatriceGaussJordan<T>(*this);
-    printf("bbite\n");
-    CMatrice<T> MATMatriceRes = MGJMatrice->MGJget();
-    MATMatriceRes.MACAfficher();
-    return MATMatriceRes;
+    return MGJMatrice->MGJget();
 }
 
 
